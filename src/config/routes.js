@@ -5,7 +5,9 @@ const routes = {
     login:'/login',
     chooseAccount:'/choose-account',
     teacher:'/teacher',
-    student:'/student'
+    student:'/student',
+    room: '/list-room',
+    watch: '/watch-room'
 };
 
 export default routes;

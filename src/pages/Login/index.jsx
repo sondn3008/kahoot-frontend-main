@@ -13,19 +13,17 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const respone = await axios.post(
-                '/user/login',
-                JSON.stringify(
-                    { email, password },
+            const respone = await axios.post('/user/login',
+              { email, password },
                     {
                         headers: {
                             'Content-Type': 'multipart/form-data',
                         },
                         origin: 'http://localhost:63342',
                     },
-                ),
-            );
-            console.log(respone.data);
+                
+            )
+            console.log(respone.data)
         } catch (error) {
             console.log(error);
         }
