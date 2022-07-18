@@ -4,16 +4,16 @@
     text-decoration:none;
   }
   .teacher_container{
-     width: 200px;
-    height: 193px;
+    width: 24%;
+    height: 50%;
     flex-grow: 0;
     padding: 49px 52px 48px;
     background-color: #d13643;
     margin: 0 60%;
   }
   .icon_teaceher{
-    width: 96px;
-    height: 96px;
+    width: 55%;
+    height: 60%;
     flex-grow: 0;
     padding: 28px 27.3px 26.3px 27px;
     background-color: #9D2022;
@@ -53,16 +53,16 @@
     text-decoration:none;
   }
   .student_container{
-     width: 200px;
-    height: 193px;
+    width: 24%;
+    height: 50%;
     flex-grow: 0;
     padding: 49px 52px 48px;
     background-color: #3167c7;
   
   }
   .icon_student{
-    width: 96px;
-    height: 96px;
+    width: 55%;
+    height: 60%;
     flex-grow: 0;
     padding: 28px 27.3px 26.3px 27px;
     background-color: #1A4199;

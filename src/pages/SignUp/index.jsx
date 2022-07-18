@@ -21,6 +21,7 @@ const SignUp = () => {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("")
     const [address, setAddress] = useState("")
+    const [image, setImage] = useState("")
     // const [validPwd, setValidPwd] = useState(false);
     // const [pwdFocus, setPwdFocus] = useState(false);
     // const [matchFocus, setMatchFocus] = useState(false);
@@ -52,7 +53,7 @@ const SignUp = () => {
         try {
             const respone = await axios.post(
                 REGISTER_URL,
-                JSON.stringify({ email, password, phone, address,name }),
+                JSON.stringify({ email, password, phone, address,name,image}),
                 {
                     headers: {
                         "Content-Type": "application/json" },
@@ -85,7 +86,8 @@ const SignUp = () => {
                                 <Grid>
                                     <form onSubmit={handleSubmit}>
                                         <Grid item xs={12}>
-                                            <TextField className={'Rectangle-4'}
+                                            <TextField
+                                                className={'Rectangle-4'}
                                                 label="Email"
                                                 placeholder="please enter username"
                                                 type="text"
@@ -94,7 +96,8 @@ const SignUp = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <TextField className={'Rectangle-4'}
+                                            <TextField
+                                                className={'Rectangle-4'}
                                                 label="Password"
                                                 onChange={(e) => setPassword(e.target.value)}
                                                 value={password}
@@ -102,7 +105,8 @@ const SignUp = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <TextField className={'Rectangle-4'}
+                                            <TextField
+                                                className={'Rectangle-4'}
                                                 label="Name"
                                                 placeholder="please enter full name"
                                                 value={name}
@@ -110,7 +114,8 @@ const SignUp = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <TextField className={'Rectangle-4'}
+                                            <TextField
+                                                className={'Rectangle-4'}
                                                 label="Phone"
                                                 placeholder="please enter phone"
                                                 value={phone}
@@ -118,12 +123,22 @@ const SignUp = () => {
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <TextField className={'Rectangle-4'}
+                                            <TextField
+                                                className={'Rectangle-4'}
                                                 label="Address"
                                                 placeholder="please enter address"
                                                 value={address}
                                                 onChange={(e) => setAddress(e.target.value)}
                                             />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField
+                                                className={'Rectangle-4'}
+                                                type="file"
+                                                value={image}
+                                                onChange={(e) => setImage(e.target.value)}
+                                            />
+                
                                         </Grid>
                                         <Grid item xs={12}>
                                             {/* <button
@@ -135,7 +150,9 @@ const SignUp = () => {
                                     >
                                         Sign Up
                                     </button> */}
-                                            <button className={'Rectangle-6'} type="submit">Sign Up</button>
+                                            <button className={'Rectangle-6'} type="submit">
+                                                Sign Up
+                                            </button>
                                         </Grid>
                                     </form>
                                 </Grid>
