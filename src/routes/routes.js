@@ -10,7 +10,8 @@ import ChooseAccount from '../pages/ChooseAccount';
 import Teacher from '../pages/ChooseAccount/Teacher';
 import Student from '../pages/ChooseAccount/Student'
 import SignUp from '../pages/SignUp';
-
+import ListRoom from '../pages/ChooseAccount/Teacher/Room/List';
+import ViewRoom from '../pages/ChooseAccount/Teacher/Room/Watch';
 // Public routes
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -21,8 +22,12 @@ const publicRoutes = [
     {path:  config.routes.chooseAccount, component:ChooseAccount},
     {path:  config.routes.teacher, component:Teacher},
     {path:  config.routes.student, component:Student},
+    {path:  config.routes.room, component:ListRoom},
+    {path:  config.routes.watch, component:ViewRoom},
 ];
 
-const privateRoutes = [];
+const privateRoutes = [
+
+];
 
 export { publicRoutes, privateRoutes };

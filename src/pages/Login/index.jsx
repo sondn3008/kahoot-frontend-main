@@ -14,14 +14,14 @@ const Login = () => {
         e.preventDefault();
         try {
             const respone = await axios.post('/user/login',
-                JSON.stringify({ email, password },
+              { email, password },
                     {
                         headers: {
                             "Content-Type": "multipart/form-data"
                         },
                         origin:'http://localhost:63342'
                     },
-                )
+                
             )
             console.log(respone.data)
         } catch (error) {
