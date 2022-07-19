@@ -108,6 +108,13 @@
     border-radius: 5px;
     background-color: #fff;
 }
+.Rectangle-33 {
+    width: 95%;
+    height: 100%;
+    margin: 2% 0 0 2%;
+    border-radius: 5px;
+    background-color: #fff;
+}
 .Rectangle-4 {
     width: 346px;
     height: 58px;
@@ -200,4 +207,98 @@
     letter-spacing: normal;
     text-align: left;
     color: #343435;
+}
+.Mn-hnh-View-Room-List-1 {
+    width: 1728px;
+    height: 985px;
+    flex-grow: 0;
+    background-color: #f8f8f8;
+}
+.Rectangle-13 {
+    width: 1726px;
+    height: 83px;
+
+    padding: 32px 41.3px 0px 40px;
+    background-color: #fff;
+}
+.image-5 {
+    width: 185px;
+    height: 62px;
+    flex-grow: 0;
+    margin: 0 1416px 0 0;
+}
+.dropdown {
+    margin-top: -10%;
+    margin-left: 70%;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+.dropdown-content-a {
+    color: black;
+    padding: 5px 16px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content .dropdown-content-a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #ffffff;
+}
+
+.Room {
+    width: 35%;
+    /* height: 30px; */
+    margin-left: 10px;
+    font-family: Montserrat;
+    font-size: 32px;
+    font-weight: bold;
+    /* font-stretch: normal; */
+    /* font-style: normal; */
+    /* line-height: normal; */
+    /* letter-spacing: -0.32px; */
+    text-align: left;
+    color: #000;
+}
+
+.Start-room {
+    width: 17%;
+    margin-left: 69%;
+    /* height: 37px; */
+    font-family: Montserrat;
+    font-size: 30px;
+    font-weight: 600;
+    /* font-stretch: normal; */
+    /* font-style: normal; */
+    /* line-height: normal; */
+    letter-spacing: -0.3px;
+    background-color: #d9d9d9;
+}
+.btn-edit {
+    width: 22%;
+    margin-left: 2%;
+    /* height: 37px; */
+    font-family: Montserrat;
+    font-size: 140%;
+    /* font-weight: 600; */
+    /* font-stretch: normal; */
+    /* font-style: normal; */
+    /* line-height: normal; */
+    /* letter-spacing: -0.3px; */
+    background-color: #ff720687;
 }

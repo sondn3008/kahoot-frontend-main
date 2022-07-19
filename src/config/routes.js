@@ -1,11 +1,12 @@
 const routes = {
-    home: '/',
+    // home: '/',
     result: '/result',
     signup:'sign-up',
     login:'/login',
-    chooseAccount:'/choose-account',
+    chooseAccount:'/',
     teacher:'/teacher',
     student:'/student',
+    student_username:'/student-username',
     room: '/list-room',
     watch: '/watch-room'
 };

@@ -12,9 +12,10 @@ import Student from '../pages/ChooseAccount/Student'
 import SignUp from '../pages/SignUp';
 import ListRoom from '../pages/ChooseAccount/Teacher/Room/List';
 import ViewRoom from '../pages/ChooseAccount/Teacher/Room/Watch';
+import Student_username from '../pages/ChooseAccount/Student/Student-Username';
 // Public routes
 const publicRoutes = [
-    { path: config.routes.home, component: Home },
+    // { path: config.routes.home, component: Home },
     { path: config.routes.result, component: Result },
     { path: config.routes.login, component: Login },
     { path: config.routes.signup, component: SignUp },
@@ -22,6 +23,7 @@ const publicRoutes = [
     {path:  config.routes.chooseAccount, component:ChooseAccount},
     {path:  config.routes.teacher, component:Teacher},
     {path:  config.routes.student, component:Student},
+    {path:  config.routes.student_username, component:Student_username},
     {path:  config.routes.room, component:ListRoom},
     {path:  config.routes.watch, component:ViewRoom},
 ];
