@@ -4,9 +4,11 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import axios from '../../base/axios';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import logo from './kahoot.png';
+import { parseJwt } from '../../utils/pJwt'
 const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -23,9 +25,27 @@ const Login = () => {
                     },
                 
             )
-            console.log(respone.data)
-        } catch (error) {
-            console.log(error);
+            console.log(respone)
+            if (respone.data.authenticated) {
+                localStorage.kahootApp_accessToken = respone.data.accessToken;
+                localStorage.kahootApp_rfToken = respone.data.rfToken;
+                const obj = parseJwt(respone.data.accessToken);
+                localStorage.kahootApp_userId = obj.id;
+                navigate('/teacher');
+              } else {
+                alert('Invalid Login.');
+              }
+        } catch (err) {
+            if (err.response) {
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+              } else if (err.request) {
+                console.log(err.request);
+              } else {
+                console.log('Error', err.message);
+              }
+              console.log(err.config);
         }
     };
     return (
@@ -46,8 +66,10 @@ const Login = () => {
                                         <Grid item xs={12}>
                                             <TextField className={'Rectangle-4'}
                                                 label="Email"
+                                                type="email"
                                                 placeholder="Username or email"
                                                 onChange={(e) => setEmail(e.target.value)}
+                                                required
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
@@ -57,6 +79,7 @@ const Login = () => {
                                                 autoComplete="current-password"
                                                 placeholder="please enter password"
                                                 onChange={(e) => setPassword(e.target.value)}
+                                                required
                                             />
                                         </Grid>
                                         <Grid item xs={12}>

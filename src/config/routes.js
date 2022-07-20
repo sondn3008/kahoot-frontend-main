@@ -1,7 +1,7 @@
 const routes = {
     // home: '/',
     result: '/result',
-    signup:'sign-up',
+    signup:'/sign-up',
     login:'/login',
     chooseAccount:'/',
     teacher:'/teacher',

@@ -4,11 +4,12 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useRef, useState, useEffect } from "react";
 import axios from '../../base/axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import http from '../../base/http'
 
 
 const SignUp = () => {
+    const navigate = useNavigate();
     const REGISTER_URL = "/user/register";
     const USER_REGEX = /^\[A-z\][A-z0-9-_]{3,23}$/;
     const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -41,6 +42,10 @@ const SignUp = () => {
     //     setErrMsg("");
     // }, [user, pwd]);
 
+    const changeHandler = (event) => {
+		setImage(event.target.files[0]);
+	};
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         // validate làm sau
@@ -51,22 +56,42 @@ const SignUp = () => {
         //     return;
         // }
         try {
+            const formData = new FormData();
+            formData.append("email", email);
+            formData.append("password", password);
+            formData.append("phone", phone);
+            formData.append("address", address);
+            formData.append("image", image);
+            formData.append("name", name);
             const respone = await axios.post(
                 REGISTER_URL,
-                JSON.stringify({ email, password, phone, address,name,image}),
+                formData,
                 {
                     headers: {
                         "Content-Type": "application/json" },
                 },
             );
-            console.log (respone)
+            if (respone.status === 200) {
+                navigate('/login');
+              } else {
+                alert(respone.data.message);
+              }
             setSuccess(true);
             //clear state and controlled inputs
-            setEmail("");
-            setPassword("");
+            // setEmail("");
+            // setPassword("");
            
         } catch (err) {
-            console.log(err)
+            if (err.response) {
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+              } else if (err.request) {
+                console.log(err.request);
+              } else {
+                console.log('Error', err.message);
+              }
+              console.log(err.config);
         }
        
     }
@@ -90,15 +115,17 @@ const SignUp = () => {
                                                 className={'Rectangle-4'}
                                                 label="Email"
                                                 placeholder="please enter username"
-                                                type="text"
+                                                type="email"
                                                 onChange={(e) => setEmail(e.target.value)}
                                                 value={email}
+                                                required
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
                                                 className={'Rectangle-4'}
                                                 label="Password"
+                                                type="password"
                                                 onChange={(e) => setPassword(e.target.value)}
                                                 value={password}
                                                 required
@@ -111,6 +138,7 @@ const SignUp = () => {
                                                 placeholder="please enter full name"
                                                 value={name}
                                                 onChange={(e) => setName(e.target.value)}
+                                                required
                                             />
                                         </Grid>
                                         <Grid item xs={12}>
@@ -135,8 +163,8 @@ const SignUp = () => {
                                             <TextField
                                                 className={'Rectangle-4'}
                                                 type="file"
-                                                value={image}
-                                                onChange={(e) => setImage(e.target.value)}
+                                                onChange={changeHandler}
+                                                required
                                             />
                 
                                         </Grid>
