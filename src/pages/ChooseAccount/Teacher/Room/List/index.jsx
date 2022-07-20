@@ -40,11 +40,7 @@ const ListRoom = () => {
     }
     // const handleDeleteRoom = (pin) => {
     //     axios.delete(`/room/${pin}`)
-    //     .then(respone => {
-    //         console.log(respone)
-    //     }).catch(err => {
-    //         console.log(err)
-    //     })
+        
     // }
     return(<>
         <Grid container spacing={2}>
@@ -79,11 +75,10 @@ const ListRoom = () => {
               <TableCell align="center">{row.pin}</TableCell>
               <TableCell align="center">{row.createdAt}</TableCell>
               <TableCell align="center">{row.updatedAt}</TableCell>
-              <TableCell align="center">
+              {/* <TableCell align="center">
                <a style={{textDecoration:'none'}} href="/watch-room"><Button>Watch</Button></a>
-                {/* <Button  onClick={handleDeleteRoom(`${row.pin}`)}>Delete</Button> */}
-                {/* onClick={handleDeleteRoom(`${row.pin}`)} */}
-              </TableCell>
+
+              </TableCell> */}
             </TableRow>
           )) : null}
         </TableBody>

@@ -3,7 +3,7 @@ import config from '../config';
 // Layouts
 
 // Pages
-import Home from '../pages/Home';
+// import Home from '../pages/Home';
 import Result from '../pages/Result';
 import Login from '../pages/Login'
 import ChooseAccount from '../pages/ChooseAccount';

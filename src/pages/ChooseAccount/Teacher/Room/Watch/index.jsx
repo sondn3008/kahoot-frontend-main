@@ -1,5 +1,5 @@
-import React from "react";
-import { Grid ,Button} from "@mui/material";
+import React from 'react';
+import { Grid, Button } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,11 +8,14 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
-
+import { grey } from '@mui/material/colors';
+import UpgradeIcon from '@mui/icons-material/Upgrade';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 const ViewRoom = () => {
     return (
         <>
-             <div class="Mn-hnh-View-Room-List-1">
+            <div class="Mn-hnh-View-Room-List-1">
                 <div class="Rectangle-13">
                     <div className={'image-5'}>
                         <img src={require('../../../image/kahoot.png')} />
@@ -73,8 +76,26 @@ const ViewRoom = () => {
                                                     <TableCell align="center">25-07-2022</TableCell>
                                                     <TableCell align="center">Đúng</TableCell>
                                                     <TableCell align="center">
-                                                        <Button class="btn-edit">Update</Button>
-                                                        <Button class="btn-edit">Delete</Button>
+                                                        <Button class="btn-edit">
+                                                            <IconButton
+                                                                aria-label="delete"
+                                                                size="small"
+                                                                sx={{ color: grey[50] }}
+                                                            >
+                                                                <UpgradeIcon />
+                                                            </IconButton>
+                                                            Update
+                                                        </Button>
+                                                        <Button class="btn-edit1">
+                                                            <IconButton
+                                                                aria-label="delete"
+                                                                size="small"
+                                                                sx={{ color: grey[50] }}
+                                                            >
+                                                                <DeleteIcon />
+                                                                Delete
+                                                            </IconButton>
+                                                        </Button>
                                                     </TableCell>
                                                 </TableRow>
 
@@ -103,6 +124,6 @@ const ViewRoom = () => {
                 </div>
             </div>
         </>
-    )
-}
-export default ViewRoom
+    );
+};
+export default ViewRoom;
