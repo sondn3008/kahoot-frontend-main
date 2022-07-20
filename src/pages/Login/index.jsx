@@ -24,18 +24,16 @@ const Login = () => {
                     },
                 
             )
-            console.log(respone)
             if (respone.data.authenticated) {
                 localStorage.kahootApp_accessToken = respone.data.accessToken;
                 localStorage.kahootApp_rfToken = respone.data.rfToken;
                 const obj = parseJwt(respone.data.accessToken);
                 localStorage.kahootApp_userId = obj.id;
                 navigate('/teacher');
-              } else {
-                alert('Invalid Login.');
-              }
+            }
         } catch (err) {
             if (err.response) {
+                alert(err.response.data.message)
                 console.log(err.response.data);
                 console.log(err.response.status);
                 console.log(err.response.headers);
