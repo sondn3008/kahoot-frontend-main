@@ -1,6 +1,6 @@
 
 import React, { useState,useEffect } from "react";
-import { Button } from "@mui/material";
+import { Button, getNativeSelectUtilityClasses } from "@mui/material";
 import Grid from '@mui/material/Grid';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,25 +11,19 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from "../../../../../base/axios";
 
+
 const ListRoom = () => {
-    const [data,setData] = useState({})
+    const [data,setData] = useState()
 
     useEffect(() => {
         axios.get('/room/13')
         .then((response) => {
-            console.log(response.data.data)
-           
-            setData(response.data.data);
-
-            console.log(data.id)
-
+            const roomData = Object.values(response.data.data)
+              setData(roomData)
         })
-    }, [])
-    useEffect(() => {
-      
-    },  handleCreateRoom)
+    }, handleCreateRoom)
     const handleCreateRoom = async (e) => {
-        e.preventDefault();
+      
         try {
             const respone = await axios.post('/room/create/13',
                     {
@@ -44,6 +38,14 @@ const ListRoom = () => {
             console.log(error)
         }
     }
+    // const handleDeleteRoom = (pin) => {
+    //     axios.delete(`/room/${pin}`)
+    //     .then(respone => {
+    //         console.log(respone)
+    //     }).catch(err => {
+    //         console.log(err)
+    //     })
+    // }
     return(<>
         <Grid container spacing={2}>
             <Grid item xs={6}>List Room</Grid>
@@ -66,38 +68,24 @@ const ListRoom = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-       
-            {/* data fake */}
-            <TableRow>
-            <TableCell align="left">1</TableCell>
-              <TableCell align="center">547123</TableCell>
-              <TableCell align="center">17/07/2022</TableCell>
-              <TableCell align="center">20/07/2022</TableCell>
-              <TableCell align="center">
-               <a style={{textDecoration:'none'}} href="/watch-room"><Button>Watch</Button></a>
-
-                <Button>Delete</Button>
-              </TableCell>
-            </TableRow>
-         
-          {/* {data.map((row) => (
+          {data ? data.map((row) => (
             <TableRow
               key={row.key}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {}
+                {row.id}
               </TableCell>
-              <TableCell align="right">{row.pin}</TableCell>
-              <TableCell align="right">{row.locked}</TableCell>
-              <TableCell align="right">{row.createdAt}</TableCell>
-              <TableCell align="right">{row.updatedAt}</TableCell>
+              <TableCell align="center">{row.pin}</TableCell>
+              <TableCell align="center">{row.createdAt}</TableCell>
+              <TableCell align="center">{row.updatedAt}</TableCell>
+              <TableCell align="center">
+               <a style={{textDecoration:'none'}} href="/watch-room"><Button>Watch</Button></a>
+                {/* <Button  onClick={handleDeleteRoom(`${row.pin}`)}>Delete</Button> */}
+                {/* onClick={handleDeleteRoom(`${row.pin}`)} */}
+              </TableCell>
             </TableRow>
-          ))} */}
-          {
-            
-          }
-        
+          )) : null}
         </TableBody>
       </Table>
     </TableContainer>
