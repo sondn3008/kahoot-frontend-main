@@ -1,10 +1,10 @@
 import React from "react";
 import style from './style.module.css'
-
+import ListRoom from "./Room/List";
 const Teacher = () => {
     return(
         <>
-            <h1>hello têacher</h1>
+            < ListRoom />
         </>
     )
 }
