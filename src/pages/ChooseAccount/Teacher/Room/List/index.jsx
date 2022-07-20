@@ -10,43 +10,53 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from "../../../../../base/axios";
+import CreateRoom from "../Create";
+// import CreateRoom from "../Create";
 
 
 const ListRoom = () => {
-    const [data,setData] = useState()
-
+    const [data,setData] = useState([])
+    const [code,setCode] = useState('')
+    const [id,setId] = useState(localStorage.kahootApp_userId)
+    // console.log(id)
     useEffect(() => {
-        axios.get('/room/13')
+        axios.get(`/room/${id}`)
         .then((response) => {
             const roomData = Object.values(response.data.data)
               setData(roomData)
+              
         })
-    }, handleCreateRoom)
-    const handleCreateRoom = async (e) => {
-      
-        try {
-            const respone = await axios.post('/room/create/13',
-                    {
-                        headers: {
-                            "Content-Type": "multipart/form-data"
-                        },
-                    },
-                
-            )
-            console.log(respone.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    // const handleDeleteRoom = (pin) => {
-    //     axios.delete(`/room/${pin}`)
-        
-    // }
+    },[])
+  //   const handleCreateRoom = async (e) => {
+  //     console.log(id)
+  //     try {
+  //        const response = await  axios.post(`/room/create/${id}`,
+  //                 {
+  //                     headers: {
+  //                         "Content-Type": "multipart/form-data"
+  //                     },
+  //                 },
+              
+  //         )
+  //         console.log(response.data)
+  //         // const newroomData = Object.values(response.data.data)
+  //         // console.log(newroomData)
+  //         // setData(data.push(newroomData))
+  //         // console.log(data.push(newroomData))
+  //     } catch (error) {
+  //         console.log(error)
+  //     }
+  // }
+  // const onDelete = (pin) => {
+  //   axios.delete(`/room/${pin}`)
+  // }
+
     return(<>
         <Grid container spacing={2}>
             <Grid item xs={6}>List Room</Grid>
             <Grid item xs={6}>
-                <Button onClick={handleCreateRoom}>Create Room</Button>
+            {/* <Button onClick={handleCreateRoom}>Create Room</Button> */}
+            <CreateRoom/>
             </Grid>
         </Grid>
         <Grid container spacing={2}>
@@ -75,12 +85,10 @@ const ListRoom = () => {
               <TableCell align="center">{row.pin}</TableCell>
               <TableCell align="center">{row.createdAt}</TableCell>
               <TableCell align="center">{row.updatedAt}</TableCell>
-              {/* <TableCell align="center">
-               <a style={{textDecoration:'none'}} href="/watch-room"><Button>Watch</Button></a>
-
-              </TableCell> */}
+              <a style={{textDecoration:'none'}} href="/watch-room"><Button>Watch</Button></a>
+                {/* <Button  onClick={onDelete(`${row.pin}`)}>Delete</Button>  */}
             </TableRow>
-          )) : null}
+          )) : null }
         </TableBody>
       </Table>
     </TableContainer>
