@@ -20,11 +20,14 @@ const ListRoom = () => {
     const [id,setId] = useState(localStorage.kahootApp_userId)
     // console.log(id)
     useEffect(() => {
-        axios.get(`/room/${id}`)
+        axios.get(`/room/${id}`,{
+            headers: {
+                'kahootapp-access-token': localStorage.kahootApp_accessToken,
+            },
+        })
         .then((response) => {
             const roomData = Object.values(response.data.data)
-              setData(roomData)
-              
+            setData(roomData)   
         })
     },[])
   //   const handleCreateRoom = async (e) => {
