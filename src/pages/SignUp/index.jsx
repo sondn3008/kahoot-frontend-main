@@ -73,8 +73,6 @@ const SignUp = () => {
             );
             if (respone.status === 200) {
                 navigate('/login');
-              } else {
-                alert(respone.data.message);
               }
             setSuccess(true);
             //clear state and controlled inputs
@@ -86,6 +84,7 @@ const SignUp = () => {
                 console.log(err.response.data);
                 console.log(err.response.status);
                 console.log(err.response.headers);
+                alert(err.respone.data.message)
               } else if (err.request) {
                 console.log(err.request);
               } else {
