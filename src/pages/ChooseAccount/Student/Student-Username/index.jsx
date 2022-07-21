@@ -4,13 +4,12 @@ import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button';
 import axios from '../../../../base/axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Student_username = () => {
     const navigate = useNavigate();
     const [name, setName] = useState('');
-    const [room_id, setRoomId] = useState('');
-    setRoomId(localStorage.kahootApp_room_id)
+    const [room_id, setRoomId] = useState(localStorage.kahootApp_room_id);
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -47,19 +46,19 @@ const Student_username = () => {
                                     className={'Rectangle-4'}
                                     label="USERNAME"
                                     placeholder="USERNAME"
-                                    // type="text"
+                                    type="text"
                                     onChange={(e) => setName(e.target.value)}
                                     value={name}
                                     required
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <Button className={'Rectangle-6'} type="submit">
+                                <button className={'Rectangle-6'} type="submit">
                                     Submit
-                                </Button>
+                                </button>
                             </Grid>
                         </Grid>
-                    </form>
+                    </form>    
                 </Box>
             </div>
         </div>

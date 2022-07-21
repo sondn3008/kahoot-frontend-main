@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import DefaultLayout from '../src/layouts/DefaultLayout/index';
 import { publicRoutes } from '../src/routes/index';
 import { isJwtExpired } from 'jwt-check-expiration';
-import axios from "./base/axios";
 import './App.css';
 
 // function App() {
@@ -45,7 +44,6 @@ function App() {
       <Router>
         <Routes>
             {publicRoutes.map((route, index) => {
-                console.log(publicRoutes)
                 const Page = route.component;
                 let Layout = DefaultLayout;
 
