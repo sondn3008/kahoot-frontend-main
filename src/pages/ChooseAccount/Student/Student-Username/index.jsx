@@ -7,32 +7,32 @@ import axios from '../../../../base/axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Student_username = () => {
-    // const navigate = useNavigate();
-    // const [name, setName] = useState('');
-    // const [room_id, setRoomId] = useState('');
-    // setRoomId(localStorage.kahootApp_room_id)
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const respone = await axios.post('/realtime', { name, room_id })
-    //         if (respone) {
-    //             localStorage.kahootApp_name = name;
-    //             navigate('/student-username');
-    //         }
-    //     } catch (err) {
-    //         if (err.response) {
-    //             alert(err.response.data.message)
-    //             console.log(err.response.data);
-    //             console.log(err.response.status);
-    //             console.log(err.response.headers);
-    //           } else if (err.request) {
-    //             console.log(err.request);
-    //           } else {
-    //             console.log('Error', err.message);
-    //           }
-    //           console.log(err.config);
-    //     }
-    // };
+    const navigate = useNavigate();
+    const [name, setName] = useState('');
+    const [room_id, setRoomId] = useState('');
+    setRoomId(localStorage.kahootApp_room_id)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const respone = await axios.post('/realtime', { name, room_id })
+            if (respone) {
+                localStorage.kahootApp_name = name;
+                navigate('/student-waiting');
+            }
+        } catch (err) {
+            if (err.response) {
+                alert(err.response.data.message)
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+              } else if (err.request) {
+                console.log(err.request);
+              } else {
+                console.log('Error', err.message);
+              }
+              console.log(err.config);
+        }
+    };
     return (
         <div className={'Mn_hnh_ng_nhp'}>
             <div className={'image-4'}>
@@ -40,20 +40,26 @@ const Student_username = () => {
             </div>
             <div className={'Rectangle-32'}>
                 <Box>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField className={'Rectangle-4'} 
-                            label="USERNAME" 
-                            placeholder="USERNAME" 
-                            type="text"
-                            // onChange={(e) => setName(e.target.value)}
-                            required
-                            />
+                    <form onSubmit={handleSubmit}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    className={'Rectangle-4'}
+                                    label="USERNAME"
+                                    placeholder="USERNAME"
+                                    // type="text"
+                                    onChange={(e) => setName(e.target.value)}
+                                    value={name}
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Button className={'Rectangle-6'} type="submit">
+                                    Submit
+                                </Button>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12}>
-                            <button className={'Rectangle-6'} type="submit">Submit</button>
-                        </Grid>
-                    </Grid>
+                    </form>
                 </Box>
             </div>
         </div>

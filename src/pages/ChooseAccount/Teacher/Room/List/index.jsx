@@ -51,50 +51,65 @@ const ListRoom = () => {
   //   axios.delete(`/room/${pin}`)
   // }
 
-    return(<>
-        <Grid container spacing={2}>
-            <Grid item xs={6}>List Room</Grid>
-            <Grid item xs={6}>
-            {/* <Button onClick={handleCreateRoom}>Create Room</Button> */}
-            <CreateRoom/>
+    return (
+        <>
+            {/* <div class="Rectangle-13">
+              <div className={'image-4'}>
+                  <img src={require('../../../image/kahoot.png')} />
+                </div> */}
+
+           
+            <Grid container spacing={2}>
+                <Grid item xs={6}>
+                    List Room
+                </Grid>
+                <Grid item xs={6}>
+                    {/* <Button onClick={handleCreateRoom}>Create Room</Button> */}
+                    <CreateRoom />
+                </Grid>
             </Grid>
-        </Grid>
-        <Grid container spacing={2}>
-            <Grid item xs={12}>
-            <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>ID Room</TableCell>
-            {/* <TableCell align="right">Name Room</TableCell> */}
-            <TableCell align="center">PIN</TableCell>
-            <TableCell align="center">Date-Start</TableCell>
-            <TableCell align="center">Date-End</TableCell>
-            <TableCell align="center">Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data ? data.map((row) => (
-            <TableRow
-              key={row.key}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.id}
-              </TableCell>
-              <TableCell align="center">{row.pin}</TableCell>
-              <TableCell align="center">{row.createdAt}</TableCell>
-              <TableCell align="center">{row.updatedAt}</TableCell>
-              <a style={{textDecoration:'none'}} href="/watch-room"><Button>Watch</Button></a>
-                {/* <Button  onClick={onDelete(`${row.pin}`)}>Delete</Button>  */}
-            </TableRow>
-          )) : null }
-        </TableBody>
-      </Table>
-    </TableContainer>
-            </Grid> 
-        </Grid>
-    </>)
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>ID Room</TableCell>
+                                    {/* <TableCell align="right">Name Room</TableCell> */}
+                                    <TableCell align="center">PIN</TableCell>
+                                    <TableCell align="center">Date-Start</TableCell>
+                                    <TableCell align="center">Date-End</TableCell>
+                                    <TableCell align="center">Action</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {data
+                                    ? data.map((row) => (
+                                          <TableRow
+                                              key={row.key}
+                                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                          >
+                                              <TableCell component="th" scope="row">
+                                                  {row.id}
+                                              </TableCell>
+                                              <TableCell align="center">{row.pin}</TableCell>
+                                              <TableCell align="center">{row.createdAt}</TableCell>
+                                              <TableCell align="center">{row.updatedAt}</TableCell>
+                                              <a style={{ textDecoration: 'none' }} href="/watch-room">
+                                                  <Button>Watch</Button>
+                                              </a>
+                                              {/* <Button  onClick={onDelete(`${row.pin}`)}>Delete</Button>  */}
+                                          </TableRow>
+                                      ))
+                                    : null}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Grid>
+            </Grid>
+            {/* </div> */}
+        </>
+    );
 }
 
 export default ListRoom

@@ -13,6 +13,8 @@ import SignUp from '../pages/SignUp';
 import ListRoom from '../pages/ChooseAccount/Teacher/Room/List';
 import ViewRoom from '../pages/ChooseAccount/Teacher/Room/Watch';
 import Student_username from '../pages/ChooseAccount/Student/Student-Username';
+import Student_waiting from '../pages/ChooseAccount/Student/Student-waitingGame';
+import Create_question from '../pages/ChooseAccount/Teacher/Room/Create_questions';
 // Public routes
 const publicRoutes = [
     // { path: config.routes.home, component: Home },
@@ -23,7 +25,9 @@ const publicRoutes = [
     {path:  config.routes.chooseAccount, component:ChooseAccount},
     {path:  config.routes.teacher, component:Teacher},
     {path:  config.routes.student, component:Student},
+    {path:  config.routes.create_question, component:Create_question},
     {path:  config.routes.student_username, component:Student_username},
+    {path:  config.routes.student_waiting, component:Student_waiting},
     {path:  config.routes.room, component:ListRoom},
     {path:  config.routes.watch, component:ViewRoom},
 ];

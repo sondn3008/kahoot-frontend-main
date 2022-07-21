@@ -8,7 +8,9 @@ const routes = {
     student:'/student',
     student_username:'/student-username',
     room: '/list-room',
-    watch: '/watch-room'
+    watch: '/watch-room',
+    student_waiting:'/student-waiting',
+    create_question:'/create-question',
 };
 
 export default routes;
