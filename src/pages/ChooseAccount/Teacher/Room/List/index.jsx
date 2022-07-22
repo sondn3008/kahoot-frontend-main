@@ -100,14 +100,40 @@ const ListRoom = () => {
     }
 
     return (
-        <> 
+        <>
+            <div className={'Rectangle-13'}>
+                <div className={'image-7'}>
+                    <img src={require('./kahoot.png')} />
+                </div>
+            </div>
+            <div className={"Rectangle-40"}>
+
+           
             <Grid container spacing={2}>
-                <Grid item xs={2}>
-                    List Room
+                <div className={'Room-List'}>
+                    <Grid item xs={2}>
+                        List Room
+                    </Grid>
+                </div>
+                <Grid sx={{ justifyContent: 'left' }} item xs={3}>
+                    {' '}
+                    <Button variant="contained" onClick={handleCreateRoom}>Create Room</Button>
                 </Grid>
-                <Grid sx={{justifyContent:'left'}} item xs={3}> <Button onClick={handleCreateRoom}>Create Room</Button></Grid>
-                <Grid sx={{justifyContent:'right'}} item xs={4}> <Button onClick={(e) => {navigate('/teacher/update')}}>Update Information</Button></Grid>
-                <Grid sx={{justifyContent:'right'}} item xs={3}> <Button onClick={handleLogout}>Logout</Button></Grid>
+
+                <Grid sx={{ justifyContent: 'right' }} item xs={4}>
+                    {' '}
+                    <Button variant="contained"
+                        onClick={(e) => {
+                            navigate('/teacher/update');
+                        }}
+                    >
+                        Update Information
+                    </Button>
+                </Grid>
+                <Grid sx={{ justifyContent: 'right' }} item xs={3}>
+                    {' '}
+                    <Button variant="contained" onClick={handleLogout}>Logout</Button>
+                </Grid>
             </Grid>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -135,10 +161,15 @@ const ListRoom = () => {
                                               <TableCell align="center">{row.pin}</TableCell>
                                               <TableCell align="center">{row.createdAt}</TableCell>
                                               <TableCell align="center">{row.updatedAt}</TableCell>
+                                              <div className="edit-css">
                                               <a style={{ textDecoration: 'none' }}>
-                                                  <Button onClick={(e) => handleWatchRoom(e, row.pin, row.id)}>Watch</Button>
+                                                  <Button variant="contained" onClick={(e) => handleWatchRoom(e, row.pin, row.id)}>
+                                                      Watch
+                                                  </Button>
                                               </a>
-                                              <Button  onClick={(e) => handleDeleteRoom(e,row.pin)}>Delete</Button> 
+                                              &nbsp;
+                                              <Button variant="contained" onClick={(e) => handleDeleteRoom(e, row.pin)}>Delete</Button>
+                                              </div>
                                           </TableRow>
                                       ))
                                     : null}
@@ -148,6 +179,7 @@ const ListRoom = () => {
                 </Grid>
             </Grid>
             {/* </div> */}
+            </div>
         </>
     );
 }

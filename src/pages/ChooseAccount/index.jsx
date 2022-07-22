@@ -9,7 +9,7 @@ const ChooseAccount = () => {
          <div className={'Rectangle-14'}>
              <div className={'Rectangle-13'}>
                  <div className={'image-5'}>
-                     <img src={require('./image/kahoot.png')} />
+                     <img src={require('./image/kahoot1.png')} />
                  </div>
              </div>
              <Grid container spacing={3}>

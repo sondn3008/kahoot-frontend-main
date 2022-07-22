@@ -90,10 +90,10 @@ const Create_question = () => {
         <>
             <div>
                 <div className={'Mn_hnh_ng_nhp'}>
-                    <div className={"image-6"}>
+                    <div className={"image-8"}>
                         <img src={require('./kahoot.png')} />
                     </div>
-                    <div className={'Rectangle-34'}>
+                    <div className={'Rectangle-35'}>
                         <Grid item xs={12}>
                             <h1 className={'Log_in_2'}>Create_question</h1>
                         </Grid>

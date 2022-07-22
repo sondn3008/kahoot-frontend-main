@@ -71,9 +71,6 @@
     color: #000;
 }
 .Log_in_1 {
-    width: 130px;
-    height: 39px;
-    margin: 0 14px 18px 132px;
     font-family: Montserrat;
     font-size: 32px;
     font-weight: bold;
@@ -81,7 +78,7 @@
     font-style: normal;
     line-height: normal;
     letter-spacing: -0.32px;
-    text-align: left;
+    text-align: center;
     color: #000;
 }
 .Log_in_2 {
@@ -106,14 +103,16 @@
     padding: 19px 22px 18px;
     border-radius: 5px;
     background-color: #fff;
+    text-align: center;
 }
 .Rectangle-31 {
     width: 22%;
-    height: 48%;
+    height: 51%;
     margin: 23.2px 78px 244px 645px;
     padding: 19px 22px 18px;
     border-radius: 5px;
     background-color: #fff;
+    text-align: center;
 }
 .Rectangle-32 {
     width: 23%;
@@ -122,6 +121,7 @@
     padding: 19px 22px 18px;
     border-radius: 5px;
     background-color: #fff;
+    text-align: center;
 }
 .Rectangle-33 {
     width: 94%;
@@ -138,6 +138,13 @@
     border-radius: 5px;
     background-color: #fff;
 }
+.Rectangle-40 {
+    width: 96%;
+    height: 100%;
+    margin-left: 2%;
+    border-radius: 5px;
+    background-color: #eaeaea;
+}
 .Rectangle-4 {
     width: 346px;
     height: 58px;
@@ -151,11 +158,16 @@
     padding-top: 6%;
     /* padding-left: 10%; */
 }
+
 .image-4 {
     padding-top: 10%;
     /* padding-left: 10%; */
+    padding-left: 43%;
 }
-
+.image-8 {
+    padding-top: 3%;
+    margin-left: 43%;
+}
 .Dont-have-an-account {
     width: 192px;
     height: 20px;
@@ -181,11 +193,11 @@
     background-color: #333;
 }
 .Rectangle-13 {
-    width: 1726px;
-    height: 60px;
-    /* margin: 0 0 10%; */
-    padding: 34px 1510px 30px 31px;
-    background-color: #fff;
+    width: 100%;
+    height: 10%;
+    padding: 32px 41.3px 43px 40px;
+    background-color: #401a89;
+    margin-bottom: 2%;
 }
 .Rectangle-14 {
     width: 1726px;
@@ -240,15 +252,15 @@
     width: 1728px;
     height: 985px;
     flex-grow: 0;
-    background-color: #f8f8f8;
+    background-color: #401a89 !important;
 }
-.Rectangle-13 {
+/* .Rectangle-13 {
     width: 1726px;
     height: 83px;
 
     padding: 32px 41.3px 0px 40px;
     background-color: #fff;
-}
+} */
 .image-5 {
     width: 185px;
     height: 62px;
@@ -388,6 +400,7 @@
     letter-spacing: -0.44px;
     text-align: center;
     color: #fff;
+    margin-left: 44%;
 }
 .See-your-nickname-on-screen {
     font-family: Montserrat;
@@ -399,6 +412,7 @@
     letter-spacing: -0.21px;
     text-align: center;
     color: #fff;
+    margin-left: 42%;
 }
 
 .Rectangle-25 {
@@ -422,4 +436,29 @@
 .Image-question {
     width: 50px;
     height: 50px;
+}
+.Room-List {
+    margin: 1% 7% 2% 3%;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    text-align: center;
+    color: #000;
+}
+.edit-css{
+    margin-left: 20%;
+
+}
+.Rectangle-35{
+    width: 22%;
+    height: 65%;
+    margin: 23.2px 78px 244px 645px;
+    padding: 19px 22px 18px;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
 }
