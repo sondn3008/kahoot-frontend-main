@@ -42,7 +42,6 @@ const Create_question = () => {
                 },
             );
             if (respone) {
-                console.log(respone)
                 alert(respone.data.message)
             }
            

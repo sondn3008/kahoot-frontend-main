@@ -16,7 +16,7 @@ const CreateRoom = () => {
            const respone = await  axios.post(`/room/create/${id}`,
                     {
                         headers: {
-                            "Content-Type": "multipart/form-data"
+                            'kahootapp-access-token': localStorage.kahootApp_accessToken,
                         },
                     },
                 

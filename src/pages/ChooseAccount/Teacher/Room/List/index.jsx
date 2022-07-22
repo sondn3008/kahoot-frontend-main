@@ -9,7 +9,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from "../../../../../base/axios";
-import CreateRoom from "../Create";
 
 const ListRoom = () => {
     const [data,setData] = useState([])
@@ -27,29 +26,34 @@ const ListRoom = () => {
             setData(roomData)   
         })
     },[])
-  //   const handleCreateRoom = async (e) => {
-  //     console.log(id)
-  //     try {
-  //        const response = await  axios.post(`/room/create/${id}`,
-  //                 {
-  //                     headers: {
-  //                         "Content-Type": "multipart/form-data"
-  //                     },
-  //                 },
-              
-  //         )
-  //         console.log(response.data)
-  //         // const newroomData = Object.values(response.data.data)
-  //         // console.log(newroomData)
-  //         // setData(data.push(newroomData))
-  //         // console.log(data.push(newroomData))
-  //     } catch (error) {
-  //         console.log(error)
-  //     }
-  // }
-  // const onDelete = (pin) => {
-  //   axios.delete(`/room/${pin}`)
-  // }
+
+    const handleCreateRoom = async (e) => {
+        try {
+           const respone = await  axios.post(`/room/create/${id}`,{},
+                    {
+                        headers: {
+                            'kahootapp-access-token': localStorage.kahootApp_accessToken,
+                        },
+                    }
+                
+            )
+            if (respone) {
+                alert(respone.data.message)
+            }
+        } catch (err) {
+            if (err.response) {
+                alert(err.response.data.message)
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+              } else if (err.request) {
+                console.log(err.request);
+              } else {
+                console.log('Error', err.message);
+              }
+              console.log(err.config);
+        }
+    }
 
     return (
         <>
@@ -64,8 +68,7 @@ const ListRoom = () => {
                     List Room
                 </Grid>
                 <Grid item xs={6}>
-                    {/* <Button onClick={handleCreateRoom}>Create Room</Button> */}
-                    <CreateRoom />
+                <Grid sx={{justifyContent:'center'}} item xs={3}> <Button onClick={handleCreateRoom}>Create Room</Button></Grid>
                 </Grid>
             </Grid>
             <Grid container spacing={2}>
@@ -75,7 +78,6 @@ const ListRoom = () => {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>ID Room</TableCell>
-                                    {/* <TableCell align="right">Name Room</TableCell> */}
                                     <TableCell align="center">PIN</TableCell>
                                     <TableCell align="center">Date-Start</TableCell>
                                     <TableCell align="center">Date-End</TableCell>
