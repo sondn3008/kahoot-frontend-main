@@ -77,10 +77,11 @@ const ViewRoom = () => {
             <Grid container spacing={2}>
                 <Grid sx={{ justtifyContent: 'right' }} item xs={12}>
                     <Grid container spacing={2}>
-                        <Grid sx={{justifyContent:'left'}} item xs={3}>Room: {idRoomAccess}</Grid>
-                        <Grid sx={{justifyContent:'center'}} item xs={3}> <Button>START</Button></Grid>
+                        <Grid sx={{justifyContent:'left'}} item xs={2}>Room: {idRoomAccess}</Grid>
+                        <Grid sx={{justifyContent:'center'}} item xs={2}> <Button>START</Button></Grid>
                         <Grid sx={{justifyContent:'center'}} item xs={3}> <Button onClick={(e)=>{navigate('/create-question')}}>Create question</Button></Grid>
-                        <Grid sx={{justifyContent:'right'}} item xs={3}> <Button onClick={handleLogout}>Logout</Button></Grid>
+                        <Grid sx={{justifyContent:'center'}} item xs={3}> <Button onClick={(e)=>{navigate('/teacher/update')}}>Update Information</Button></Grid>
+                        <Grid sx={{justifyContent:'right'}} item xs={2}> <Button onClick={handleLogout}>Logout</Button></Grid>
                     </Grid>
                    
                 </Grid>

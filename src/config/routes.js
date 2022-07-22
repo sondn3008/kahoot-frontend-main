@@ -5,6 +5,7 @@ const routes = {
     login:'/login',
     chooseAccount:'/',
     teacher:'/teacher',
+    update_teacher:'/teacher/update',
     student:'/student',
     student_username:'/student-username',
     room: '/list-room',

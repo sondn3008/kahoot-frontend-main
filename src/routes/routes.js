@@ -16,6 +16,7 @@ import Student_username from '../pages/ChooseAccount/Student/Student-Username';
 import Student_waiting from '../pages/ChooseAccount/Student/Student-waitingGame';
 import Create_question from '../pages/ChooseAccount/Teacher/Room/Create_questions';
 import Update_question from '../pages/ChooseAccount/Teacher/Room/Update_questions'
+import Update_teacher from '../pages/UpdateTeacher'
 // Public routes
 const publicRoutes = [
     // { path: config.routes.home, component: Home },
@@ -25,6 +26,7 @@ const publicRoutes = [
 
     {path:  config.routes.chooseAccount, component:ChooseAccount},
     {path:  config.routes.teacher, component:Teacher},
+    {path:  config.routes.update_teacher, component:Update_teacher},
     {path:  config.routes.student, component:Student},
     {path:  config.routes.create_question, component:Create_question},
     {path:  config.routes.update_question, component:Update_question},

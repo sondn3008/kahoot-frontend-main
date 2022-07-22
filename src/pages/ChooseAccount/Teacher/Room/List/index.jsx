@@ -30,7 +30,7 @@ const ListRoom = () => {
 
     const handleCreateRoom = async (e) => {
         try {
-           const respone = await  axios.post(`/room/create/${id}`,{},
+           const respone = await axios.post(`/room/create/${id}`,{},
                 {
                     headers: {
                         'kahootapp-access-token': localStorage.kahootApp_accessToken,
@@ -99,16 +99,15 @@ const ListRoom = () => {
         }
     }
 
-
-
     return (
         <> 
             <Grid container spacing={2}>
-                <Grid item xs={4}>
+                <Grid item xs={2}>
                     List Room
                 </Grid>
-                <Grid sx={{justifyContent:'left'}} item xs={4}> <Button onClick={handleCreateRoom}>Create Room</Button></Grid>
-                <Grid sx={{justifyContent:'right'}} item xs={4}> <Button onClick={handleLogout}>Logout</Button></Grid>
+                <Grid sx={{justifyContent:'left'}} item xs={3}> <Button onClick={handleCreateRoom}>Create Room</Button></Grid>
+                <Grid sx={{justifyContent:'right'}} item xs={4}> <Button onClick={(e) => {navigate('/teacher/update')}}>Update Information</Button></Grid>
+                <Grid sx={{justifyContent:'right'}} item xs={3}> <Button onClick={handleLogout}>Logout</Button></Grid>
             </Grid>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
