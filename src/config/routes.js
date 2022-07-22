@@ -11,6 +11,7 @@ const routes = {
     watch: '/watch-room',
     student_waiting:'/student-waiting',
     create_question:'/create-question',
+    update_question:'/update-question',
 };
 
 export default routes;

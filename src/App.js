@@ -47,7 +47,7 @@ function App() {
                 const Page = route.component;
                 let Layout = DefaultLayout;
 
-                if(route.path === "/teacher" || route.path === "/list-room" || route.path === "/create-question" || route.path === "/watch-room"){
+                if(route.path === "/teacher" || route.path === "/list-room" || route.path === "/create-question" || route.path === "/watch-room" || route.path === "/update-question"){
                     return (
                         <Route
                             key={index}
