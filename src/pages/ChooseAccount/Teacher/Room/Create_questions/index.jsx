@@ -3,10 +3,12 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import axios from "../../../../../base/axios";
+import { useNavigate } from 'react-router-dom';
 
 const Create_question = () => {
+    const navigate = useNavigate();
     const [image, setImage] = useState("")
-    const [room_id, setRoomId] = useState("")
+    const [room_id, setRoomId] = useState(localStorage.kahootApp_idRoomAccess)
     const [question, setQuestion] = useState("")
     const [answer_A, setAnswerA] = useState("")
     const [answer_B, setAnswerB] = useState("")
@@ -43,6 +45,7 @@ const Create_question = () => {
             );
             if (respone) {
                 alert(respone.data.message)
+                navigate('/watch-room')
             }
            
         } catch (err) {
@@ -83,7 +86,7 @@ const Create_question = () => {
                                                 label="Room ID"
                                                 placeholder="Please room id"
                                                 type="number"
-                                                onChange={(e) => setRoomId(e.target.value)}
+                                                disabled
                                                 value={room_id}
                                                 required
                                             />

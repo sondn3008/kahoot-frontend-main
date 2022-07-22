@@ -9,13 +9,16 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from '../../../../../base/axios';
 import { useNavigate } from 'react-router-dom';
+import { ReplayOutlined } from "@mui/icons-material";
 
 const ViewRoom = () => {
     const navigate = useNavigate();
     const [data,setData] = useState([])
+    const [pinAccess, setPinAccess] = useState(localStorage.kahootApp_pinAccess);
+    const [idRoomAccess, setIdRoomAccess] = useState(localStorage.kahootApp_idRoomAccess);
 
     useEffect(() => {
-        axios.get('/question/all/2',{
+        axios.get(`/question/all/${idRoomAccess}`,{
             headers: {
                 'kahootapp-access-token': localStorage.kahootApp_accessToken,
             },
@@ -26,10 +29,10 @@ const ViewRoom = () => {
         })
     },[])
 
-    const handleDeleteQuestion = async (e) => {
+    const handleDeleteQuestion = async (e, id) => {
         e.preventDefault();
         try {
-            const respone = await axios.delete('/question/16',                 
+            const respone = await axios.delete(`/question/${id}`,                 
             {
                 headers: {
                     'kahootapp-access-token': localStorage.kahootApp_accessToken,
@@ -37,6 +40,7 @@ const ViewRoom = () => {
             })
             if (respone) {
                 alert(respone.data.message)
+                window.location.reload()
             }
         } catch (err) {
             if (err.response) {
@@ -61,13 +65,19 @@ const ViewRoom = () => {
         navigate("/login")
     };
 
+    const handleUpdateQuestion = async (e, id) => {
+        e.preventDefault();
+        localStorage.kahootApp_idQuestionAccess = id
+        navigate("/update-question")
+    };
+
 
     return (
         <>
             <Grid container spacing={2}>
                 <Grid sx={{ justtifyContent: 'right' }} item xs={12}>
                     <Grid container spacing={2}>
-                        <Grid sx={{justifyContent:'left'}} item xs={3}>Room: 2</Grid>
+                        <Grid sx={{justifyContent:'left'}} item xs={3}>Room: {idRoomAccess}</Grid>
                         <Grid sx={{justifyContent:'center'}} item xs={3}> <Button>START</Button></Grid>
                         <Grid sx={{justifyContent:'center'}} item xs={3}> <Button onClick={(e)=>{navigate('/create-question')}}>Create question</Button></Grid>
                         <Grid sx={{justifyContent:'right'}} item xs={3}> <Button onClick={handleLogout}>Logout</Button></Grid>
@@ -112,9 +122,8 @@ const ViewRoom = () => {
                                               <TableCell> <img className="Image-question" src={row.image} /></TableCell>
                                               <TableCell align="center">{row.time}</TableCell>
                                               <TableCell align="center">
-                                                <Button onClick={(e)=>{navigate('/update-question')}}>Update</Button>
-
-                                                <Button onClick={handleDeleteQuestion}>Delete</Button>
+                                                <Button onClick={(e) => handleUpdateQuestion(e, row.id)}>Update</Button>
+                                                <Button onClick={(e) => handleDeleteQuestion(e, row.id)}>Delete</Button>
                                             </TableCell>
                                           </TableRow>
                                       ))

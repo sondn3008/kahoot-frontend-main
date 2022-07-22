@@ -9,12 +9,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from "../../../../../base/axios";
+import { useNavigate } from 'react-router-dom';
 
 const ListRoom = () => {
+    const navigate = useNavigate();
     const [data,setData] = useState([])
     const [code,setCode] = useState('')
     const [id,setId] = useState(localStorage.kahootApp_userId)
-    // console.log(id)
     useEffect(() => {
         axios.get(`/room/${id}`,{
             headers: {
@@ -30,12 +31,11 @@ const ListRoom = () => {
     const handleCreateRoom = async (e) => {
         try {
            const respone = await  axios.post(`/room/create/${id}`,{},
-                    {
-                        headers: {
-                            'kahootapp-access-token': localStorage.kahootApp_accessToken,
-                        },
-                    }
-                
+                {
+                    headers: {
+                        'kahootapp-access-token': localStorage.kahootApp_accessToken,
+                    },
+                }             
             )
             if (respone) {
                 alert(respone.data.message)
@@ -55,21 +55,59 @@ const ListRoom = () => {
         }
     }
 
-    return (
-        <>
-            {/* <div class="Rectangle-13">
-              <div className={'image-4'}>
-                  <img src={require('../../../image/kahoot.png')} />
-                </div> */}
+    const handleWatchRoom = async (e, pin, id) => {
+        localStorage.kahootApp_pinAccess = pin
+        localStorage.kahootApp_idRoomAccess = id
+        navigate("/watch-room")
+    }
 
-           
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        localStorage.kahootApp_accessToken = ''
+        localStorage.kahootApp_rfToken = ''
+        localStorage.kahootApp_userId = ''
+        navigate("/login")
+    };
+
+    const handleDeleteRoom = async (e, pin) => {
+        localStorage.kahootApp_pinAccess = pin
+        try {
+           const respone = await  axios.delete(`/room/${pin}`,
+                {
+                    headers: {
+                        'kahootapp-access-token': localStorage.kahootApp_accessToken,
+                    },
+                }             
+            )
+            if (respone) {
+                alert(respone.data.message)
+                window.location.reload()
+            }
+        } catch (err) {
+            if (err.response) {
+                alert(err.response.data.message)
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+              } else if (err.request) {
+                console.log(err.request);
+              } else {
+                console.log('Error', err.message);
+              }
+              console.log(err.config);
+        }
+    }
+
+
+
+    return (
+        <> 
             <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                     List Room
                 </Grid>
-                <Grid item xs={6}>
-                <Grid sx={{justifyContent:'center'}} item xs={3}> <Button onClick={handleCreateRoom}>Create Room</Button></Grid>
-                </Grid>
+                <Grid sx={{justifyContent:'left'}} item xs={4}> <Button onClick={handleCreateRoom}>Create Room</Button></Grid>
+                <Grid sx={{justifyContent:'right'}} item xs={4}> <Button onClick={handleLogout}>Logout</Button></Grid>
             </Grid>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -97,10 +135,10 @@ const ListRoom = () => {
                                               <TableCell align="center">{row.pin}</TableCell>
                                               <TableCell align="center">{row.createdAt}</TableCell>
                                               <TableCell align="center">{row.updatedAt}</TableCell>
-                                              <a style={{ textDecoration: 'none' }} href="/watch-room">
-                                                  <Button>Watch</Button>
+                                              <a style={{ textDecoration: 'none' }}>
+                                                  <Button onClick={(e) => handleWatchRoom(e, row.pin, row.id)}>Watch</Button>
                                               </a>
-                                              {/* <Button  onClick={onDelete(`${row.pin}`)}>Delete</Button>  */}
+                                              <Button  onClick={(e) => handleDeleteRoom(e,row.pin)}>Delete</Button> 
                                           </TableRow>
                                       ))
                                     : null}
