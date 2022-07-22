@@ -39,6 +39,7 @@ const ListRoom = () => {
             )
             if (respone) {
                 alert(respone.data.message)
+                window.location.reload()
             }
         } catch (err) {
             if (err.response) {
