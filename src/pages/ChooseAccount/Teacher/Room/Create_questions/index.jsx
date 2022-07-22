@@ -1,98 +1,68 @@
-import React from "react";
+import React, {useState} from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
-// import http from '../../base/http'
-
+import axios from "../../../../../base/axios";
 
 const Create_question = () => {
-    // const navigate = useNavigate();
-    // const REGISTER_URL = "/user/register";
-    // const USER_REGEX = /^\[A-z\][A-z0-9-_]{3,23}$/;
-    // const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-    // const userRef = useRef();
-    // const errRef = useRef();
-    // const [email, setEmail] = useState("");
-    // // const [validName, setValidName] = useState(false);
-    // // const [userFocus, setUserFocus] = useState(false);
-    // const [password, setPassword] = useState("");
-    // const [name, setName] = useState("");
-    // const [phone, setPhone] = useState("")
-    // const [address, setAddress] = useState("")
-    // const [image, setImage] = useState("")
-    // // const [validPwd, setValidPwd] = useState(false);
-    // // const [pwdFocus, setPwdFocus] = useState(false);
-    // // const [matchFocus, setMatchFocus] = useState(false);
-    // // const [errMsg, setErrMsg] = useState("");
-    // const [success, setSuccess] = useState(false);
+    const [image, setImage] = useState("")
+    const [room_id, setRoomId] = useState("")
+    const [question, setQuestion] = useState("")
+    const [answer_A, setAnswerA] = useState("")
+    const [answer_B, setAnswerB] = useState("")
+    const [answer_C, setAnswerC] = useState("")
+    const [answer_D, setAnswerD] = useState("")
+    const [answer_true, setAnswerTrue] = useState("")
+    const [time, setTime] = useState("")
+    
+    const changeHandler = (event) => {
+		setImage(event.target.files[0]);
+	};
 
-    // useEffect(() => {
-    //     userRef.current.focus();
-    // }, []);
-    // useEffect(() => {
-    //     setValidName(USER_REGEX.test(user));
-    // }, [user]);
-    // useEffect(() => {
-    //     setValidPwd(PWD_REGEX.test(pwd));
-    // }, [pwd]);
-    // useEffect(() => {
-    //     setErrMsg("");
-    // }, [user, pwd]);
-
-    // const changeHandler = (event) => {
-	// 	setImage(event.target.files[0]);
-	// };
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     // validate làm sau
-    //     // const v1 = USER_REGEX.test(user);
-    //     // const v2 = PWD_REGEX.test(pwd);
-    //     // if (!v1 || !v2) {
-    //     //     setErrMsg("Invalid Entry");
-    //     //     return;
-    //     // }
-    //     try {
-    //         const formData = new FormData();
-    //         formData.append("email", email);
-    //         formData.append("password", password);
-    //         formData.append("phone", phone);
-    //         formData.append("address", address);
-    //         formData.append("image", image);
-    //         formData.append("name", name);
-    //         const respone = await axios.post(
-    //             REGISTER_URL,
-    //             formData,
-    //             {
-    //                 headers: {
-    //                     "Content-Type": "application/json" },
-    //             },
-    //         );
-    //         if (respone.status === 200) {
-    //             navigate('/login');
-    //           } else {
-    //             alert(respone.data.message);
-    //           }
-    //         setSuccess(true);
-    //         //clear state and controlled inputs
-    //         // setEmail("");
-    //         // setPassword("");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const formData = new FormData();
+            formData.append("room_id", room_id);
+            formData.append("question", question);
+            formData.append("answer_A", answer_A);
+            formData.append("answer_B", answer_B);
+            formData.append("answer_C", answer_C);
+            formData.append("answer_D", answer_D);
+            formData.append("answer_true", answer_true);
+            formData.append("time", time);
+            formData.append("image", image);
+            const respone = await axios.post(
+                '/question',
+                formData,
+                {
+                    headers: {
+                        'kahootapp-access-token': localStorage.kahootApp_accessToken,
+                    },
+                },
+            );
+            if (respone) {
+                console.log(respone)
+                alert(respone.data.message)
+            }
            
-    //     } catch (err) {
-    //         if (err.response) {
-    //             console.log(err.response.data);
-    //             console.log(err.response.status);
-    //             console.log(err.response.headers);
-    //           } else if (err.request) {
-    //             console.log(err.request);
-    //           } else {
-    //             console.log('Error', err.message);
-    //           }
-    //           console.log(err.config);
-    //     }
+        } catch (err) {
+            if (err.response) {
+                alert(err.response.data['message'])
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+              } else if (err.request) {
+                alert("error request")
+                console.log(err.request);
+              } else {
+                alert("error")
+                console.log('Error', err.message);
+              }
+        }
        
-    // }
+    }
+
     return (
         <>
             <div>
@@ -107,15 +77,15 @@ const Create_question = () => {
                         <Grid item xs={12}>
                             <Box>
                                 <Grid>
-                                    <form onSubmit>
+                                    <form onSubmit={handleSubmit}>
                                         <Grid item xs={12}>
                                             <TextField
                                                 className={'Rectangle-4'}
                                                 label="Room ID"
                                                 placeholder="Please room id"
-                                                // type="email"
-                                                // onChange={(e) => setEmail(e.target.value)}
-                                                // value={email}
+                                                type="number"
+                                                onChange={(e) => setRoomId(e.target.value)}
+                                                value={room_id}
                                                 required
                                             />
                                         </Grid>
@@ -124,9 +94,9 @@ const Create_question = () => {
                                                 className={'Rectangle-4'}
                                                 label="Question"
                                                 placeholder="Please question"
-                                                // type="password"
-                                                // onChange={(e) => setPassword(e.target.value)}
-                                                // value={password}
+                                                type="text"
+                                                onChange={(e) => setQuestion(e.target.value)}
+                                                value={question}
                                                 required
                                             />
                                         </Grid>
@@ -135,8 +105,9 @@ const Create_question = () => {
                                                 className={'Rectangle-4'}
                                                 label="Answer A"
                                                 placeholder="Please Answer A"
-                                                // value={name}
-                                                // onChange={(e) => setName(e.target.value)}
+                                                type="text"
+                                                value={answer_A}
+                                                onChange={(e) => setAnswerA(e.target.value)}
                                                 required
                                             />
                                         </Grid>
@@ -145,8 +116,9 @@ const Create_question = () => {
                                                 className={'Rectangle-4'}
                                                 label="Answer B"
                                                 placeholder="Please Answer B"
-                                                // value={phone}
-                                                // onChange={(e) => setPhone(e.target.value)}
+                                                type="text"
+                                                value={answer_B}
+                                                onChange={(e) => setAnswerB(e.target.value)}
                                                 required
                                             />
                                         </Grid>
@@ -155,8 +127,9 @@ const Create_question = () => {
                                                 className={'Rectangle-4'}
                                                 label="Answer C"
                                                 placeholder="Please Answer C"
-                                                // value={address}
-                                                // onChange={(e) => setAddress(e.target.value)}
+                                                type="text"
+                                                value={answer_C}
+                                                onChange={(e) => setAnswerC(e.target.value)}
                                                 required
                                             />
                                         </Grid>
@@ -165,7 +138,30 @@ const Create_question = () => {
                                                 className={'Rectangle-4'}
                                                 label="Answer D"
                                                 placeholder="Please Answer D"
-                                                // onChange={changeHandler}
+                                                type="text"
+                                                value={answer_D}
+                                                onChange={(e) => setAnswerD(e.target.value)}
+                                                required
+                                            />
+                
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField
+                                                className={'Rectangle-4'}
+                                                label="Time"
+                                                placeholder="Please Time"
+                                                type="number"
+                                                value={time}
+                                                onChange={(e) => setTime(e.target.value)}
+                                                required
+                                            />
+                
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField
+                                                className={'Rectangle-4'}
+                                                type="file"
+                                                onChange={changeHandler}
                                                 required
                                             />
                 
@@ -175,7 +171,9 @@ const Create_question = () => {
                                                     className={'Rectangle-4'}
                                                     label="Answer True"
                                                     placeholder="Please Answer True"
-                                                    // onChange={changeHandler}
+                                                    type="text"
+                                                    value={answer_true}
+                                                    onChange={(e) => setAnswerTrue(e.target.value)}
                                                     required
                                                 />
                                             <button className={'Rectangle-6'} type="submit">
